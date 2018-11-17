@@ -99,12 +99,12 @@ Now, you should be able to access the symfony app by browsing http://localhost
 docker-compose exec web composer require symfony/requirements-checker
 ```
 
-The requirements checker tool creates a file called check.php in the public/ directory of your project.  
+The requirements checker tool creates a file called check.php in the public/ directory of your project:  
 As our main Docker container is not local, edit that file and remove the '127.0.0.1' REMOTE_ADDR restriction.  
 Open http://localhost/check.php with your browser to check the requirements.  
 
 Regarding the 'PHP accelerator should be installed':  
-Please note Opcache is installed, but deactivated by default, as this is not practical for a development environment. 
+Please note Opcache is installed, but deactivated by default, as this is not recommended for a development environment. 
 
 If the check is valid, uninstall the requirements checker:  
 
@@ -135,12 +135,6 @@ In settings / Language & Frameworks / PHP / Debug / DBGp Proxy:
 * Port: 9001
 
 
-Using PHPStorm, in settings / Language & Frameworks / PHP / Debug / DBGPproxy:  
-* IDE key : docker
-* Port: 9001
-* Host: Use the **DOCKER_NAT_IP** ip
-
-
 ## Configure PHP-CS-Fixer for PhpStorm
 
 * On your local machine: Install PHP-CS-Fixer globally from composer
@@ -159,9 +153,18 @@ Working directory: $ProjectFileDir$
   
 
 
-## Install Webpack Encore and Build web assets
+## Install Webpack Encore
 
 ```sh
 docker-compose exec web composer require encore
 docker-compose exec web yarn install
+```
+
+## Reinit Git for your project
+
+```sh
+rm -fr .git
+git init
+git remote add origin my-project-repository-url
+
 ```
