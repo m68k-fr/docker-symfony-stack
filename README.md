@@ -165,6 +165,9 @@ docker-compose exec web yarn install
 ```sh
 rm -fr .git
 git init
+echo "# My new project" > README.md
+git add .
+git commit -m "Initial commit"
 git remote add origin my-project-repository-url
-
+git push origin master
 ```
