@@ -93,8 +93,26 @@ DATABASE_URL=mysql://user:userpass@db:3306/symfony
 Now, you should be able to access the symfony app by browsing http://localhost
 
 
-## Configure XDebug for PhpStorm
+## Checking Requirements
 
+```
+docker-compose exec web composer require symfony/requirements-checker
+```
+
+The requirements checker tool creates a file called check.php in the public/ directory of your project.  
+As our main Docker container is not local, edit that file and remove the '127.0.0.1' REMOTE_ADDR restriction.  
+Open http://localhost/check.php with your browser to check the requirements.  
+
+Regarding the 'PHP accelerator should be installed':  
+Please note Opcache is installed, but deactivated by default, as this is not practical for a development environment. 
+
+If the check is valid, uninstall the requirements checker:  
+
+```
+docker-compose exec web composer remove symfony/requirements-checker
+```
+
+## Configure XDebug for PhpStorm
 
 In settings / Language & Frameworks / PHP / Debug / Servers :  
 Add your docker-server.
