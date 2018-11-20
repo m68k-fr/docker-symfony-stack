@@ -152,6 +152,15 @@ Working directory: $ProjectFileDir$
 * Click or search for Keymap in settings. Then in the keymap window find External Tools and then again External Tools and Then whatever you named your external tool we just configured. Double click your external tool or the green pencil at the top and select Add Keyboard Shortcut from the list. Then type a key combo (I use Alt+F) and hit OK, and then, hit OK again on settings.
   
 
+## Add Alias and Function Shortcuts for Common Docker Commands 
+
+* On Linux, Edit your ~/.bashrc file to add an exec alias. 
+```
+dew() {
+  docker-compose exec web $@
+}
+```
+
 
 ## Install Webpack Encore
 
